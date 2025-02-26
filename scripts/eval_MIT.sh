@@ -57,3 +57,36 @@ python train.py \
     --ffn_type="$FFN" \
     --norm_type="$NORM" \
     --augment_N="$AUG_N"
+
+
+
+
+#    --dataset_name="uspto_MIT"
+#    --save_name="Model0"
+#    --vocab_name="uspto_MIT"
+#    --seed="17"
+#    --K="4"
+#    --kernel="spd"
+#    --eval_batch_size="64"
+#    --eval_token_limit="0"
+#    --d_model="256"
+#    --d_ff="2048"
+#    --enc_layer="6"
+#    --dec_layer="8"
+#    --dropout="0.0"
+#    --mode="eval"
+#    --task="dualtask"
+#    --eval_task="forwardsynthesis"
+#    --eval_mode="test"
+#    --split_data_len=0
+#    --T="1.0"
+#    --beam_group="1"
+#    --top_k="0"
+#    --top_p="0.0"
+#    --beam_size="20"
+#    --search_step="300"
+#    --ckpt_path="mit"
+#    --ckpt_name="AVG_MAIN"
+#    --ffn_type="vanilla"
+#    --norm_type="rmsnorm"
+#    --augment_N="1"

@@ -53,7 +53,6 @@ def get_feat(
                   'deg': deg_matrix, 'dist': dist_matrix, 'align_idx': align_idx}
     return graph_feat
     
-
 def get_1hop_feat(
     token: list[int] | str,
     rvocab: dict[int:str],
@@ -62,12 +61,23 @@ def get_1hop_feat(
     dual_task=-1,
     reaction_class=-1
 ):
-    if isinstance(token, list):
-        token_list = [rvocab.get(i) for i in token]
-    elif isinstance(token ,str):
-        token_list = smi2token(token, True)
-    token = ''.join(token_list)
-    mol = Chem.MolFromSmiles(token)
+    token_list = []
+    try:
+        if isinstance(token, list):
+            # 清理 token 列表，移除 None 和其他无效值
+            token_list = [rvocab.get(i) for i in token if i is not None and i in rvocab]
+        elif isinstance(token, str):
+            token_list = smi2token(token, True)
+        token_str = ''.join(token_list)
+    except Exception as e:
+        print(f"Error processing token_list: {token_list}, error: {e}")
+        return None, None, None, None, None
+
+    mol = Chem.MolFromSmiles(token_str)
+    if mol is None:
+        print(f"Invalid SMILES string: {token_str}")
+        return None, None, None, None, None
+
     align_idx = smigraph_align(token_list, mol)
 
     atom_feat = []
@@ -89,7 +99,6 @@ def get_1hop_feat(
         bond_start.extend([start, end])
         bond_end.extend([end, start])
         f_bond, bond_type = get_bond_feat(bond)
-        # bond_feat.extend([f_bond, f_bond])
         bond_feat.append(f_bond)
         bond_feat.append(f_bond)
         bond_type_list.extend([bond_type, bond_type])
@@ -98,10 +107,13 @@ def get_1hop_feat(
     bond_feat = np.array(bond_feat, dtype=np.int16)
     bond_type_list = np.array(bond_type_list, dtype=np.int16)
     bond_idx = np.array([bond_start, bond_end], dtype=np.int16)
+
+    # 排序以确保一致性
     perm = (bond_idx[0] * mol.GetNumAtoms() + bond_idx[1]).argsort()
     bond_idx = bond_idx[:, perm]
     bond_feat = bond_feat[perm]
     bond_type_list = bond_type_list[perm]
+
     return atom_feat, bond_idx, bond_feat, bond_type_list, align_idx
 
 def get_khop_feat(

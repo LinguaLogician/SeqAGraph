@@ -25,3 +25,18 @@ python preprocess.py \
     --file_split="$FILE_SPLIT" \
     --augment_N="$AUG_N" \
     --split_shuffle
+
+
+#    --dataset_name="uspto_full"
+#    --save_name="Model0"
+#    --vocab_name="uspto_full"
+#    --seed="17"
+#    --K="4"
+#    --kernel="spd"
+#    --split_data_len="10000"
+#    --smi2token
+#    --tokenize
+#    --featurize
+#    --file_split="10000"
+#    --augment_N="2"
+#    --split_shuffle
