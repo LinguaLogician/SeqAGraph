@@ -66,3 +66,44 @@ python train.py \
     --ffn_type="$FFN" \
     --norm_type="$NORM" \
     --augment_N="$AUG_N"
+
+
+
+#    --dataset_name="uspto_full"
+#    --save_name="Model0"
+#    --vocab_name="uspto_full"
+#    --seed=17
+#    --K=4
+#    --kernel="spd"
+#    --batch_size=64
+#    --token_limit=15000
+#    --d_model=256
+#    --d_ff=2048
+#    --enc_layer=6
+#    --dec_layer=8
+#    --dropout=0.1
+#    --mode="train"
+#    --task="dualtask"
+#    --eval_task="retrosynthesis"
+#    --epochs=1000
+#    --steps=600000
+#    --accum_count=2
+#    --lr_factor=1.0
+#    --max_lr=3e-4
+#    --min_lr=1e-6
+#    --warmup=10000
+#    --end_step=600000
+#    --gamma=2.0
+#    --train_eval
+#    --eval_start=500000
+#    --eval_step=2000
+#    --split_data_len=10000
+#    --T=1.0
+#    --beam_group=1
+#    --top_k=0
+#    --top_p=0.0
+#    --optimizer="AdamW"
+#    --lrschedule="cosine"
+#    --ffn_type="vanilla"
+#    --norm_type="rmsnorm"
+#    --augment_N=2

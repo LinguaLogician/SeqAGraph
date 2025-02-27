@@ -11,29 +11,15 @@ EVAL_SPLIT=10000
 AUG_N=5
 
 
-python preprocess.py \
-    --dataset_name="$DATASET" \
-    --save_name="$SAVENAME" \
-    --vocab_name="$VOCAB" \
-    --seed="$SEED" \
-    --K="$K" \
-    --kernel="$KERNEL" \
-    --split_data_len="$EVAL_SPLIT" \
-    --smi2token \
-    --tokenize \
-    --featurize \
-    --file_split="$FILE_SPLIT" \
-    --augment_N="$AUG_N"
-
-#    --dataset_name="uspto_full"
+#    --dataset_name="uspto_50k"
 #    --save_name="Model0"
-#    --vocab_name="uspto_full"
-#    --seed="17"
-#    --K="4"
+#    --vocab_name="uspto_50k"
+#    --seed=17
+#    --K=4
 #    --kernel="spd"
-#    --split_data_len="10000"
+#    --split_data_len=10000
 #    --smi2token
 #    --tokenize
 #    --featurize
-#    --file_split="10000"
-#    --augment_N="2"
+#    --file_split=10000
+#    --augment_N=5

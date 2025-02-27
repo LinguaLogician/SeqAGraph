@@ -1,5 +1,5 @@
 import torch
-import IndexElemtwiseCUDA
+# import IndexElemtwiseCUDA
 
 from typing import Optional
 
@@ -49,4 +49,20 @@ def indexelemwise(
     src1, src2 = broadcast(src1, src2)
     src_idx1 = idx_check(src1, src_idx1)
     operate = operate_check(operate)
-    return IndexElemtwiseCUDA.IndexElemtwiseOperate(src1, src2, src_idx1, src_idx2, operate)
+
+    # 处理 src_idx2 为 None 的情况
+    if src_idx2 is None:
+        src_idx2 = torch.arange(src2.size(0), device=src2.device)
+
+    src1_selected = src1.index_select(0, src_idx1)
+    src2_selected = src2.index_select(0, src_idx2)
+
+    if operate == "sum":
+        result = src1_selected + src2_selected
+    elif operate == "mul":
+        result = src1_selected * src2_selected
+    else:
+        raise ValueError(f"Unsupported operation: {operate}")
+
+    return result
+

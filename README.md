@@ -41,6 +41,18 @@ Code was run and evaluated for:
     - pytorch 2.0.0 (for SDPA kernel)
     - torch-scatter 2.1.1+pt20cu117
     - rdkit 2022.03.2
+    - pandas
+    - tqdm
+    - tensorboard
+    - numpy==1.24.1
+
+https://download.pytorch.org/whl/torch_stable.html
+
+https://pytorch-geometric.com/whl/
+
+https://pytorch-geometric.com/whl/torch-2.0.0%2Bcu117.html
+
+https://github.com/rdkit/rdkit/releases?page=4
 
 Models were trained on RTX A5000 with 24GB memory for larger batch size(e.g. 64\*2), which also available for less GPU memory with an appropriate batch size setting and larger gradient accumulation steps(e.g. 32\*2 and accumulate 4 steps for 6GB).
 
